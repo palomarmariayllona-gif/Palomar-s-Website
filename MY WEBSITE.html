@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maria Yllona Luna Palomar - Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        
+        :root {
+            
+            --lavender-blush: #FFE6ED;
+            --blush: #CF7486; 
+            --text-dark: #333; 
+            --shadow-color: rgba(207, 116, 134, 0.4); 
+            
+            
+            --header-font: 'Playfair Display', serif;
+            --body-font: 'Varela Round', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--body-font);
+            background-color: var(--lavender-blush);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column; 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            background-color: transparent; 
+            padding: 20px 0 10px 0;
+            gap: 40px;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            font-family: var(--header-font);
+            font-size: 1.3em;
+            color: var(--blush);
+            text-decoration: none;
+            padding: 8px 15px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--blush);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--text-dark);
+        }
+
+        .nav-item.active::after {
+            width: 100%;
+        }
+
+        
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            padding: 20px 40px 40px 40px;
+        }
+
+        
+        .content-container {
+            width: 100%;
+            display: none; 
+            justify-content: center;
+            flex-wrap: wrap; 
+            gap: 40px; 
+            animation: fadeIn 0.6s ease-out;
+            max-width: 1200px; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        
+        .content-container.active {
+            display: flex;
+        }
+        
+        
+        .boxes-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 100%;
+        }
+
+        
+        .content-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            max-width: 350px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease-out;
+        }
+        .content-box:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+        .content-box h1, .content-box h2, .content-container > h1 {
+            font-family: var(--header-font);
+            color: var(--blush);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .content-container > h1 { 
+            font-size: 3.5em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .content-box h1 { font-size: 3em; }
+        .content-box h2 { font-size: 2em; }
+        
+        
+        .image-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 10px; 
+        }
+        
+        
+        .polaroid-image-frame {
+            background: #fff;
+            padding: 15px 15px 40px 15px; 
+            border: 1px solid var(--lavender-blush);
+            box-shadow: 0 5px 20px var(--shadow-color);
+            display: inline-block; 
+        }
+        .polaroid-image-frame img {
+            width: 150px;
+            height: 150px;
+            display: block;
+            object-fit: contain; 
+            box-shadow: none; 
+        }
+        
+        
+        #box1 .polaroid-image-frame:first-child {
+            transform: rotate(-5deg); 
+        }
+        #box1 .polaroid-image-frame:nth-child(2) {
+            transform: rotate(3deg) translateY(-20px) translateX(10px);
+        }
+
+        
+        .circle-frame {
+            width: 180px; /* Default for box 3 */
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid var(--blush); 
+            box-shadow: 0 0 25px var(--shadow-color);
+        }
+        .circle-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            box-shadow: none;
+        }
+        
+        /* Smaller circles for boxes 4, 5, 6, 7, and 8 for better fit */
+        #box4 .circle-frame,
+        #box5 .circle-frame, 
+        #box6 .circle-frame,
+        #box7 .circle-frame,
+        #box8 .circle-frame {
+            width: 100px; /* Uniform smaller size */
+            height: 100px;
+            border-width: 3px; 
+        }
+        
+        /* Removed .box-frame and .rectangle-frame CSS */
+
+        
+        .section-text {
+            font-size: 1em;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .organized-list {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            max-width: 300px;
+            text-align: left;
+        }
+        .organized-list li {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .organized-list li strong {
+            color: var(--blush);
+            font-weight: 700;
+        }
+        .organized-list i {
+            margin-right: 10px;
+            color: var(--blush);
+            min-width: 20px;
+            text-align: center;
+        }
+
+        
+        #box2 h1 {
+            font-size: 3.2em;
+            font-weight: 900; 
+            text-transform: uppercase;
+            margin-top: 50px;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .top-nav {
+                gap: 20px;
+                padding: 15px 0 5px 0;
+            }
+            .nav-item {
+                font-size: 1.1em;
+            }
+            .main-content {
+                padding: 20px 10px;
+            }
+            .content-container {
+                gap: 20px;
+            }
+            .boxes-wrapper {
+                gap: 20px;
+            }
+            .content-box {
+                max-width: 90%;
+            }
+            #box2 h1 {
+                font-size: 2.2em;
+            }
+            .content-container > h1 {
+                font-size: 2.5em;
+            }
+            .image-group {
+                gap: 10px;
+            }
+            /* Updated mobile sizes for all circle frames in About section */
+            #box3 .circle-frame {
+                 width: 90px;
+                 height: 90px;
+            }
+            #box4 .circle-frame,
+            #box5 .circle-frame, 
+            #box6 .circle-frame,
+            #box7 .circle-frame,
+            #box8 .circle-frame {
+                width: 80px; 
+                height: 80px;
+            }
+            .polaroid-image-frame img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-nav">
+        <a id="nav-home" class="nav-item active" data-container="home-container">Home</a>
+        <a id="nav-about" class="nav-item" data-container="about-container">About</a>
+        <a id="nav-contacts" class="nav-item" data-container="contacts-container">Contacts</a>
+    </header>
+
+    <div class="main-content">
+        
+        <div id="home-container" class="content-container active">
+            
+            <h1>Who's Eli? ۶ৎ</h1>
+            
+            <div class="boxes-wrapper">
+                
+                <div id="box1" class="content-box">
+                    <div class="image-group">
+                        <div class="polaroid-image-frame">
+                            <img src="p1.jpeg" alt="Eli Polaroid 1">
+                        </div>
+                        <div class="polaroid-image-frame">
+                            <img src="p2.jpeg" alt="Eli Polaroid 2">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="box2" class="content-box">
+                    <h1 class="full-name">Maria Yllona Luna Palomar</h1>
+                    <p class="section-text">
+                        I’m an aspiring IT professional with a passion for creating clean, functional, and user-friendly websites. I enjoy solving problems through code and continuously learning new technologies to improve my skills in web development and design.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="about-container" class="content-container">
+            
+            <div class="boxes-wrapper">
+                <div id="box3" class="content-box">
+                    <h2>Lil me 𑣲</h2>
+                    <div class="image-group">
+                        <div class="circle-frame">
+                            <img src="lil me 2.png" alt="Personal Details">
+                        </div>
+                    </div>
+                    <ul class="organized-list">
+                        <li><strong>Age:</strong> 19 years old</li>
+                        <li><strong>Height:</strong> 5'3</li>
+                        <li><strong>Weight:</strong> 55 kg</li>
+                        <li><strong>Address:</strong> Guis-Guis Talon, Sitio Dalampasigan, Sariaya Quezon</li>
+                        <li><strong>Gender:</strong> Female</li>
+                        <li><strong>Nationality:</strong> Filipino</li>
+                        <li><strong>Status:</strong> Single</li>
+                    </ul>
+                </div>
+                
+                <div id="box4" class="content-box">
+                    <h2>Go to ♡</h2>
+                    <div class="image-group">
+                        <div class="circle-frame"><img src="logo.png" alt="Digital Design"></div>
+                        <div class="circle-frame"><img src="troubleshoooot.png" alt="Technical Skills"></div>
+                        <div class="circle-frame"><img src="teamworkkk.png" alt="Soft Skills"></div>
+                    </div>
+                    <ul class="organized-list">
+                        <li><strong>Digital Design:</strong> UI/UX Wireframing, Canva</li>
+                        <li><strong>Technical Skills:</strong> Troubleshooting, Computer Assembly</li>
+                        <li><strong>Soft Skills:</strong> Time Management, Teamwork</li>
+                    </ul>
+                </div>
+                
+                <div id="box5" class="content-box">
+                    <h2>Study Journey -`♡´-</h2>
+                    <div class="image-group">
+                        <div class="circle-frame"><img src="bignay.jpg" alt="Elementary School"></div>
+                        <div class="circle-frame"><img src="lutucan.jpg" alt="High School"></div>
+                        <div class="circle-frame"><img src="cstc.png" alt="College"></div>
+                    </div>
+                    <ul class="organized-list">
+                        <li style="margin-top: 15px;"><strong>Bignay 1 Elementary School</strong><br>Graduated With High Honor<br>Bignay 1, Sariaya Quezon</li>
+                        <li style="margin-top: 15px;"><strong>Lutucan Integrated National High School</strong><br>Graduated With High Honor (Information and Communication Technology)<br>Lutucan Malabag, Sariaya Quezon</li>
+                        <li style="margin-top: 15px;"><strong>CSTC Sariaya</strong><br>College of Sciences, Technology and Communication (CSTC) Sariaya Campus<br>Bachelor of Science in Information Technology</li>
+                    </ul>
+                </div>
+                
+                <div id="box6" class="content-box">
+                    <h2>Milestones ꪆৎ</h2>
+                    <div class="image-group">
+                        <div class="circle-frame"><img src="with highh.png" alt="Academic Excellence"></div>
+                        <div class="circle-frame"><img src="org.png" alt="Organization Membership"></div>
+                        <div class="circle-frame"><img src="volunteerrrrr.png" alt="Leadership"></div>
+                    </div>
+                    <ul class="organized-list">
+                        <li><i class="fas fa-medal"></i><strong>With High Honor</strong> — Consistently achieved academic excellence from elementary to senior high school.</li>
+                        <li><i class="fas fa-users"></i><strong>Active Member of IT-related Organizations</strong> — Participated in events and activities that enhance leadership and technical skills.</li>
+                        <li><i class="fas fa-user-tie"></i><strong>Volunteer & Student Leader</strong> — Served as a class representative and active IT event volunteer.</li>
+                    </ul>
+                </div>
+                
+                <div id="box7" class="content-box">
+                    <h2>What I Love ᢉ𐭩</h2>
+                    <div class="image-group">
+                        <div class="circle-frame"><img src="musiccc.png" alt="Music"></div>
+                        <div class="circle-frame"><img src="moviiiee.png" alt="Movies"></div>
+                        <div class="circle-frame"><img src="bff.png" alt="Friends"></div>
+                        <div class="circle-frame"><img src="gaammee.png" alt="Gaming"></div>
+                    </div>
+                    <ul class="organized-list">
+                        <li><i class="fas fa-headphones"></i>Listening to music</li>
+                        <li><i class="fas fa-film"></i>Watching movies and series</li>
+                        <li><i class="fas fa-user-friends"></i>Hanging out with friends</li>
+                        <li><i class="fas fa-gamepad"></i>Playing mobile games</li>
+                    </ul>
+                </div>
+                
+                <div id="box8" class="content-box">
+                    <h2>Stuff I Worked on.ᐟ.ᐟ</h2>
+                    <div class="image-group">
+                        <div class="circle-frame"><img src="seminarss.png" alt="Seminars"></div>
+                        <div class="circle-frame"><img src="vsl.png" alt="Organizer"></div>
+                        <div class="circle-frame"><img src="websitteee.png" alt="Website"></div>
+                    </div>
+                    <ul class="organized-list">
+                        <li><i class="fas fa-chalkboard-teacher"></i>Attended IT Department Seminars</li>
+                        <li><i class="fas fa-briefcase"></i>Project and Career Organizer</li>
+                        <li><i class="fas fa-laptop-code"></i>Creative Portfolio Website</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="contacts-container" class="content-container">
+            
+            <div class="boxes-wrapper">
+                <div id="box9" class="content-box">
+                    <h2>Drop a message ❀</h2>
+                    <div class="image-group">
+                        <div class="circle-frame">
+                            <img src="contaccctt.png" alt="Contact Information">
+                        </div>
+                    </div>
+                    <ul class="organized-list" style="max-width: 320px;">
+                        <li><i class="fas fa-envelope"></i> 20244021@cstc.edu.ph</li>
+                        <li><i class="fab fa-facebook"></i> Maria Yllona</li>
+                        <li><i class="fab fa-instagram"></i> ueliey</li>
+                        <li><i class="fas fa-phone"></i> 09945964800</li>
+                        <li><i class="fas fa-phone"></i> 09305407707</li>
+                        <li><i class="fab fa-tiktok"></i> mari3xa</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentContainers = document.querySelectorAll('.content-container');
+
+            
+            function showContainer(containerId) {
+                
+                contentContainers.forEach(container => {
+                    container.classList.remove('active');
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                
+                const targetContainer = document.getElementById(containerId);
+                if (targetContainer) {
+                    targetContainer.classList.add('active');
+                }
+                
+                
+                const activeNavItem = document.querySelector(`.nav-item[data-container="${containerId}"]`);
+                if (activeNavItem) {
+                    activeNavItem.classList.add('active');
+                }
+            }
+
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    const containerId = item.getAttribute('data-container');
+                    showContainer(containerId);
+                });
+            });
+
+            
+            showContainer('home-container');
+        });
+    </script>
+</body>
+</html>
